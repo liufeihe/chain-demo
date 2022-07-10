@@ -4,6 +4,38 @@ info:
   name: ''
   description: ''
 paths:
+  /chain-demo/chaindemo/hello:
+    get:
+      summary: Queries a list of Hello items.
+      operationId: ChaindemoChaindemoHello
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              text:
+                type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
   /chain-demo/chaindemo/params:
     get:
       summary: Parameters queries the parameters of the module.
@@ -30465,6 +30497,11 @@ definitions:
   chaindemo.chaindemo.Params:
     type: object
     description: Params defines the parameters for the module.
+  chaindemo.chaindemo.QueryHelloResponse:
+    type: object
+    properties:
+      text:
+        type: string
   chaindemo.chaindemo.QueryParamsResponse:
     type: object
     properties:

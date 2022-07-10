@@ -14,6 +14,10 @@
  */
 export type ChaindemoParams = object;
 
+export interface ChaindemoQueryHelloResponse {
+  text?: string;
+}
+
 /**
  * QueryParamsResponse is response type for the Query/Params RPC method.
  */
@@ -229,6 +233,22 @@ export class HttpClient<SecurityDataType = unknown> {
  * @version version not set
  */
 export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryHello
+   * @summary Queries a list of Hello items.
+   * @request GET:/chain-demo/chaindemo/hello
+   */
+  queryHello = (params: RequestParams = {}) =>
+    this.request<ChaindemoQueryHelloResponse, RpcStatus>({
+      path: `/chain-demo/chaindemo/hello`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+
   /**
    * No description
    *
